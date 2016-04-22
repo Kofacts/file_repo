@@ -11,7 +11,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
-								<p class="text-right text-danger">dddd</p>
+								<p class="col-sm-offset-2 col-sm-10 text-right text-danger">dddd</p>
 								<label class="col-sm-2 control-label" for="username">Username</label>
 								<div class="col-sm-10">
 									<input name="username" id="username" class="form-control" type="text" placeholder="Enter your username here">
