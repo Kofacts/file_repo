@@ -40,11 +40,15 @@ if ($inputs->getErrs('chk')) {
 	$smarty->assign('errors', $inputs->getErrs('chk'));
 	$smarty->display('users/signup.tpl');
 } else {
-	$inputs->changeDetails([
-		'password' => password_hash($inputs->getDetails()['password'], PASSWORD_DEFAULT)
-	]);
+	DB::conn('1st');
 
-	$inputs->save(['username', 'password', 'phone_number', 'email_address'], 'users', '1st');
+	$SQLStatement = 'INSERT into `users` (
+		`username`, `password`, `email_address`, `phone_number`
+	) VALUES ('
+		. DB::quote($_POST['username']) . ',' . DB::quote($_POST['password']) . ','
+		. DB::quote($_POST['email_address']) . ',' . DB::quote($_POST['phone_number'])
+	. ')';
+	DB::query($SQLStatement);
 
 	$msg = 'Your sign up was successful. Please sign in to continue.';
 	header('Location: ' . WEBSITE_URL . '/users.php?action=signin&msg=' . $msg);

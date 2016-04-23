@@ -10,12 +10,12 @@ class DB {
 
 	private static $conn;
 
-	public static function conn($DBPos) {
+	public static function conn($dbPos) {
 		$config = include 'db/config.php';
 
-		self::$dsn = $config[$DBPos]['dsn'];
-		self::$username = $config[$DBPos]['username'];
-		self::$password = $config[$DBPos]['password'];
+		self::$dsn = $config[$dbPos]['dsn'];
+		self::$username = $config[$dbPos]['username'];
+		self::$password = $config[$dbPos]['password'];
 
 		try {
 			self::$conn = new PDO(self::$dsn, self::$username, self::$password);

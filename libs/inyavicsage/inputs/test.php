@@ -31,4 +31,10 @@ $inputs->chkUniqness([
 	'phone_number' => ['tbl' => 'users']
 ], '1st');
 
-var_dump($inputs->getErrs());
+var_dump($inputs->getErrs('chk'));
+
+$inputs->changeDetails([
+	'password' => password_hash($inputs->getDetails()['password'], PASSWORD_DEFAULT)
+]);
+
+var_dump($inputs->getDetails());

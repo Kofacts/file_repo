@@ -14,6 +14,12 @@ class Inputs {
 		return $this->details;
 	}
 
+	public function changeDetails(array $details) {
+		foreach ($details as $inputID => $input) {
+			$this->details[$inputID] = $input;
+		}
+	}
+
 	public function chkFilter(array $rules) {
 		foreach ($rules as $inputID => $rule) {
 			$input = $this->details[$inputID];
@@ -59,8 +65,8 @@ class Inputs {
 		}
 	}
 
-	public function chkUniqness($rules, $DBPos) {
-		DB::conn($DBPos);
+	public function chkUniqness(array $rules, $dbPos) {
+		DB::conn($dbPos);
 		
 		foreach ($rules as $inputID => $rule) {
 			$input = $this->details[$inputID];
@@ -79,7 +85,18 @@ class Inputs {
 		}
 	}
 
-	public function getErrs() {
-		return $this->errs;
+	public function save(array $inputIDs, $tbl, $dbPos) {
+		DB::conn($dbPos);
+
+		$cols = implode('`, `', $inputIDs);
+		$vals = implode('", "', $this->details);
+
+		$SQLStatement = 'INSERT into `' . $tbl . '` (`' . $cols . '`) VALUES ("'
+			. $vals . '")';
+		DB::query($SQLStatement);
+	}
+
+	public function getErrs($funcType) {
+		return $this->errs[$funcType];
 	}
 }

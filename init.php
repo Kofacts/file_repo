@@ -1,4 +1,5 @@
 <?php
+
 define('SMARTY_DIR', __DIR__ . '/libs/smarty/libs/');
 define('WEBSITE_TITLE', 'File Repository');
 define('WEBSITE_URL', 'http://localhost/file_repo');

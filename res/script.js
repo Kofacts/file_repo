@@ -1,37 +1,41 @@
 $(document).ready(function(){
 	$.when(
-		$.getScript('resources/bootstrap-3.3.6-dist/js/bootstrap.min.js'),
-		$.getScript('resources/inyavic.js'),
+		$.getScript('res/bootstrap-3.3.6-dist/js/bootstrap.min.js'),
+		$.getScript('res/inyavicsage.js'),
 		$.Deferred(function(deferred){
 			$(deferred.resolve);
 		})
 	).done(function(){
-		var input = new Inyavic.Inputs({
+		var inputs = new inyavicsage.Inputs({
 			'username': 'Inyavic Sage',
 			'password': '1234',
-			'email-address': 'inyavicsage@inyavic.com',
-			'phone-number': '+2348012345678'
+			'email_address': 'inyavicsage@inyavic.com',
+			'phone_number': '+2348012345678'
 		});
 		
-		input.checkFilter({
+		inputs.chkFilter({
 			'username': {'filter': /^[a-z_\-0-9]+$/i},
-			'email-address': {'filter': /^.+@.+\..+$/},
-			'phone-number': {'filter': /^[+0-9]+$/}
+			'email_address': {'filter': /^.+@.+\..+$/},
+			'phone_number': {'filter': /^[+0-9]+$/}
 		});
 		
-		input.checkLength({
-			'username': {'length': {'minimum': 3, 'maximum': 20}},
-			'password': {'length': {'minimum': 6, 'maximum': 50}},
-			'email-address': {'length': {'minimum': 5, 'maximum': 50}},
-			'phone-number': {'length': {'minimum': 5, 'maximum': 20}}
+		inputs.chkLen({
+			'username': {'len': {'min': 3, 'max': 20}},
+			'password': {'len': {'min': 6, 'max': 50}},
+			'email_address': {'len': {'min': 5, 'max': 50}},
+			'phone_number': {'len': {'min': 5, 'max': 20}}
 		});
 		
-		input.checkUniqueness({
-			'username': {'table': 'accounts'},
-			'email-address': {'table': 'accounts'},
-			'phone-number': {'table': 'accounts'}
+		inputs.chkUniqness({
+			'username': {'tbl': 'users'},
+			'email_address': {'tbl': 'users'},
+			'phone_number': {'tbl': 'users'}
+		}, '1st', 'ajax_returns/users.php');
+
+		inputs.changeDetails({
+			'password': '123456'
 		});
 		
-		console.log(input.getErrors());
+		console.log(inputs.getErrs('chk'));
 	});
 });
