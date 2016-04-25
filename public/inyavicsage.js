@@ -1,22 +1,23 @@
 var inyavicsage = inyavicsage || {};
 
-inyavicsage.Inputs = function (details) {
+inyavicsage.Inputs = function(details){
+	inputs = this;
 	this.details = details;
 	this.errs = new Object();
 	this.errs.chk = new Object();
 }
 
 inyavicsage.Inputs.prototype = {
-	constructor: this,
-	getDetails: function () {
+	constructor: inyavicsage.Inputs,
+	getDetails: function(){
 		return this.details;
 	},
-	changeDetails: function (details) {
+	changeDetails: function(details){
 		for (inputID in details) {
 			this.details[inputID] = details[inputID];
 		}
 	},
-	chkFilter: function (rules) {
+	chkFilter: function(rules){
 		for (inputID in rules) {
 			var input = this.details[inputID];
 			var filter = rules[inputID].filter;
@@ -27,7 +28,7 @@ inyavicsage.Inputs.prototype = {
 			}
 		}
 	},
-	chkLen: function (rules) {
+	chkLen: function(rules){
 		for (inputID in rules) {
 			var input = this.details[inputID];
 			var minLen = rules[inputID].len.min;
@@ -47,24 +48,23 @@ inyavicsage.Inputs.prototype = {
 			}
 		}
 	},
-	chkUniqness: function (rules, dbPos, ajaxReturnURL) {
+	chkUniqness: function(rules, dbPos, ajaxReturnURL){
 		for (inputID in rules) {
 			var input = this.details[inputID];
 			var tbl = rules[inputID].tbl;
-			var inputs = this;
 
 			$.post(ajaxReturnURL, {
 				'action': 'chk_uniqness', 'input_id': inputID, 'input': input, 'tbl': tbl,
 				'db_pos': dbPos
 			}, function(data){
-				inputs = 'okay';
 				if (data == 'true') {
+					inputs.errs.chk[inputID] = 'This ' + inputID.replace('-', ' ')
+						+ ' already exist in our database.';
 				}
 			});
-			console.log(inputs);
 		}
 	},
-	getErrs: function (funcAction) {
+	getErrs: function(funcAction){
 		return this.errs[funcAction];
 	}
 }
