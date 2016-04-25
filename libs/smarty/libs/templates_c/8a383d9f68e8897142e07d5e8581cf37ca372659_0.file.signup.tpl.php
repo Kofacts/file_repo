@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-23 06:50:27
+/* Smarty version 3.1.29, created on 2016-04-24 22:11:11
   from "/opt/lampp/htdocs/file_repo/libs/smarty/libs/templates/users/signup.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_571aff1306cd98_24801012',
+  'unifunc' => 'content_571d285f817042_47141605',
   'file_dependency' => 
   array (
     '8a383d9f68e8897142e07d5e8581cf37ca372659' => 
     array (
       0 => '/opt/lampp/htdocs/file_repo/libs/smarty/libs/templates/users/signup.tpl',
-      1 => 1461387020,
+      1 => 1461528619,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:users/main.tpl' => 1,
   ),
 ),false)) {
-function content_571aff1306cd98_24801012 ($_smarty_tpl) {
+function content_571d285f817042_47141605 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, 'title', array (
-  0 => 'block_72615027571aff1303e522_58508594',
+  0 => 'block_483583237571d285f6a4ba5_00696187',
   1 => false,
   3 => 0,
   2 => 0,
@@ -35,7 +35,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, 'title', array (
 
 <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, 'body', array (
-  0 => 'block_351192769571aff13044444_50005604',
+  0 => 'block_969116450571d285f700588_95933097',
   1 => false,
   3 => 0,
   2 => 0,
@@ -44,14 +44,14 @@ $_smarty_tpl->ext->_inheritance->endChild($_smarty_tpl);
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:users/main.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 2, false);
 }
 /* {block 'title'}  file:users/signup.tpl */
-function block_72615027571aff1303e522_58508594($_smarty_tpl, $_blockParentStack) {
+function block_483583237571d285f6a4ba5_00696187($_smarty_tpl, $_blockParentStack) {
 echo $_smarty_tpl->tpl_vars['page_title']->value;?>
  - <?php echo $_smarty_tpl->tpl_vars['website_title']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['section_title']->value;
 }
 /* {/block 'title'} */
 /* {block 'body'}  file:users/signup.tpl */
-function block_351192769571aff13044444_50005604($_smarty_tpl, $_blockParentStack) {
+function block_969116450571d285f700588_95933097($_smarty_tpl, $_blockParentStack) {
 ?>
 <div class="container-fluid"> <div class="row"> <div class="modal-dialog"> <form class="form-horizontal" action="<?php echo $_smarty_tpl->tpl_vars['website_url']->value;?>
 /users/signup.php" method="post"> <div class="modal-content"> <div class="modal-header"> <h1 class="modal-title"><?php echo $_smarty_tpl->tpl_vars['page_title']->value;?>

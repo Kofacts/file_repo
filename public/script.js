@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$.when(
-		$.getScript('res/bootstrap-3.3.6-dist/js/bootstrap.min.js'),
-		$.getScript('res/inyavicsage.js'),
+		$.getScript('public/bootstrap-3.3.6-dist/js/bootstrap.min.js'),
+		$.getScript('public/inyavicsage.js'),
 		$.Deferred(function(deferred){
 			$(deferred.resolve);
 		})
@@ -9,7 +9,7 @@ $(document).ready(function(){
 		var inputs = new inyavicsage.Inputs({
 			'username': 'Inyavic Sage',
 			'password': '1234',
-			'email_address': 'inyavicsage@inyavic.com',
+			'email_address': 'inyavicsage@gmail.com',
 			'phone_number': '+2348012345678'
 		});
 		

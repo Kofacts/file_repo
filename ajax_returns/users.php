@@ -15,6 +15,12 @@ if (isset($_POST['action'])) {
 			$inputs->chkUniqness([
 				$_POST['input_id'] => ['tbl' => $_POST['tbl']]
 			], $_POST['db_pos']);
+
+			if ($inputs->getErrs('chk')[$_POST['input_id']]) {
+				echo 'true';
+			} else {
+				echo 'false';
+			}
 		}
 	}
 }

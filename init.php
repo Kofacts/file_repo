@@ -2,7 +2,7 @@
 
 define('SMARTY_DIR', __DIR__ . '/libs/smarty/libs/');
 define('WEBSITE_TITLE', 'File Repository');
-define('WEBSITE_URL', 'http://localhost/file_repo');
+define('WEBSITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/file_repo');
 
 spl_autoload_register(function ($classNamespaceName) {
 	$classPath = __DIR__ . '/libs/' . str_replace('\\', '/', $classNamespaceName) . '.php';

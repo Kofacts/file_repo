@@ -43,7 +43,7 @@ inyavicsage.Inputs.prototype = {
 			
 			if (err) {
 				this.errs.chk[inputID] = 'This ' + inputID.replace('-', ' ') + ' is too '
-				+ err + '.';
+					+ err + '.';
 			}
 		}
 	},
@@ -51,16 +51,20 @@ inyavicsage.Inputs.prototype = {
 		for (inputID in rules) {
 			var input = this.details[inputID];
 			var tbl = rules[inputID].tbl;
-			
+			var inputs = this;
+
 			$.post(ajaxReturnURL, {
 				'action': 'chk_uniqness', 'input_id': inputID, 'input': input, 'tbl': tbl,
 				'db_pos': dbPos
 			}, function(data){
-				console.log(data);
+				inputs = 'okay';
+				if (data == 'true') {
+				}
 			});
+			console.log(inputs);
 		}
 	},
-	getErrs: function (funcType) {
-		return this.errs[funcType];
+	getErrs: function (funcAction) {
+		return this.errs[funcAction];
 	}
 }

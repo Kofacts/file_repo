@@ -44,7 +44,7 @@ if ($inputs->getErrs('chk')) {
 		'password' => password_hash($inputs->getDetails()['password'], PASSWORD_DEFAULT)
 	]);
 
-	$inputs->save(['username', 'password', 'phone_number', 'email_address'], 'users', '1st');
+	$inputs->save(['username', 'password', 'email_address', 'phone_number'], 'users', '1st');
 
 	$msg = 'Your sign up was successful. Please sign in to continue.';
 	header('Location: ' . WEBSITE_URL . '/users.php?action=signin&msg=' . $msg);

@@ -39,7 +39,8 @@ class Inputs {
 			}
 
 			if ($err) {
-				$this->errs['chk'][$inputID] = 'This ' . str_replace('_', ' ', $inputID) . ' is invalid.';
+				$this->errs['chk'][$inputID] = 'This ' . str_replace('_', ' ', $inputID)
+					. ' is invalid.';
 			}
 		}
 	}
@@ -59,8 +60,8 @@ class Inputs {
 			}
 
 			if ($err) {
-				$this->errs['chk'][$inputID] = 'This ' . str_replace('_', ' ', $inputID) . ' is too '
-					. $err . '.';
+				$this->errs['chk'][$inputID] = 'This ' . str_replace('_', ' ', $inputID)
+					. ' is too ' . $err . '.';
 			}
 		}
 	}
@@ -72,8 +73,8 @@ class Inputs {
 			$input = $this->details[$inputID];
 			$tbl = $rule['tbl'];
 
-			$SQLStatement = 'SELECT `' . $inputID . '` FROM `' . $tbl . '` WHERE `' . $inputID . '` = '
-				. DB::quote($input);
+			$SQLStatement = 'SELECT `' . $inputID . '` FROM `' . $tbl . '` WHERE `' . $inputID
+				. '` = ' . DB::quote($input);
 			$usersDetails = DB::query($SQLStatement);
 
 			foreach ($usersDetails as $userDetail) {
@@ -88,15 +89,22 @@ class Inputs {
 	public function save(array $inputIDs, $tbl, $dbPos) {
 		DB::conn($dbPos);
 
-		$cols = implode('`, `', $inputIDs);
-		$vals = implode('", "', $this->details);
+		$cols = null; $vals = null;
+		foreach ($inputIDs as $index => $inputID) {
+			if ($index + 1 == count($inputIDs)) {
+				$cols = $cols . '`' . $inputID . '`';
+				$vals = $vals . DB::quote($this->details[$inputID]);
+			} else {
+				$cols = $cols . '`' . $inputID . '`, ';
+				$vals = $vals . DB::quote($this->details[$inputID]) . ', ';
+			}
+		}
 
-		$SQLStatement = 'INSERT into `' . $tbl . '` (`' . $cols . '`) VALUES ("'
-			. $vals . '")';
+		$SQLStatement = 'INSERT into `' . $tbl . '` (' . $cols . ') VALUES (' . $vals . ')';
 		DB::query($SQLStatement);
 	}
 
-	public function getErrs($funcType) {
-		return $this->errs[$funcType];
+	public function getErrs($funcAction) {
+		return $this->errs[$funcAction];
 	}
 }
