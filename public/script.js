@@ -6,6 +6,16 @@ $(document).ready(function(){
 			$(deferred.resolve);
 		})
 	).done(function(){
+		$('input[data-check]').keypress(function(){
+			var inputs = $('input[data-check]').val();;
+			console.log(inputs);
+			//$(this).parents('div.form-group').find('[data-error]').val('ok');
+		});
+
+		function tt() {
+
+		}
+
 		var inputs = new inyavicsage.Inputs({
 			'username': 'Inyavic Sage',
 			'password': '1234',
